@@ -1,38 +1,242 @@
-.App {
+body {
+  font-family: Arial, sans-serif;
+  background-color: whitesmoke;
+}
+
+.app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: wheat;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
   text-align: center;
+  margin-bottom: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.add-task-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.add-task-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.add-task-popup-content {
+  background-color: white;
+  padding: 30px;
+  width: 400px;
+  max-width: 90%;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.add-task-popup .form-group {
+  margin-bottom: 20px;
+}
+
+.add-task-popup .form-group label {
+  display: block;
+  font-weight: bold;
+}
+
+.add-task-popup .form-group input[type="text"],
+.add-task-popup .form-group textarea,
+.add-task-popup .form-group input[type="date"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-task-popup .add-task-submit,
+.add-task-popup .add-task-cancel {
+  background-color: #4caf50;
   color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.add-task-popup .add-task-submit {
+  margin-right: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.add-task-popup .add-task-submit:hover,
+.add-task-popup .add-task-cancel:hover {
+  opacity: 0.8;
+}
+
+.task-list {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.task-list th,
+.task-list td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.task-list th {
+  background-color: #f5f5f5;
+  text-align: left;
+}
+
+.task-list .task-item.completed {
+  background-color: #b7beb7;
+}
+
+.checkbox-container {
+  position: relative;
+}
+
+.checkbox-container input {
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkbox-container .checkmark {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  height: 30px; /* Increase the height */
+  width: 30px; /* Increase the width */
+  background-color: #13be2c;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.checkbox-container .checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-container input:checked + .checkmark::after {
+  display: block;
+  left: 7px;
+  top: 3px;
+  width: 8px;
+  height: 16px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  opacity: 0.8;
+}
+
+.add-task-popup .checkbox-container,
+.add-task-popup .checkbox-container .checkmark {
+  display: none;
+}
+
+.add-task-popup .form-group label {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.add-task-popup .form-group input[type="text"],
+.add-task-popup .form-group textarea,
+.add-task-popup .form-group input[type="date"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+}
+
+.add-task-popup .add-task-submit,
+.add-task-popup .add-task-cancel {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.add-task-popup .add-task-submit {
+  margin-right: 10px;
+}
+
+.add-task-popup .add-task-submit:hover,
+.add-task-popup .add-task-cancel:hover {
+  opacity: 0.8;
+}
+
+.add-task-popup .form-group .error-message {
+  color: red;
+  margin-top: 5px;
+}
+
+.add-task-popup .form-group .error-message::before {
+  content: "Error: ";
+  font-weight: bold;
+}
+.add-task-popup .form-group .checkbox-container {
+  display: none;
+}
+.task-list .task-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.task-list .task-item-actions .checkbox-container {
+  flex-shrink: 0;
+  margin-bottom: 0;
+  margin-right: 10px; /* Add margin between checkbox and delete button */
+}
+
+.task-list .task-item-actions .delete-btn {
+  flex-shrink: 0;
+}
+
+/* Background colors */
+.app {
+  background-color: #f2f2f2; /* Light gray */
+}
+
+.add-task-popup {
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+}
+
+.add-task-popup-content {
+  background-color: #f8f8f8; /* Light gray */
 }
